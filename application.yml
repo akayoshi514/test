@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: batch-reactive-loom
+
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/mydb
+    username: myuser
+    password: mypassword
+    properties:
+      lock_timeout: 5000
+
+  r2dbc:
+    pool:
+      enabled: true
+      initial-size: 5
+      max-size: 50
+      max-idle-time: 30m
+      validation-query: SELECT 1
+
+  webclient:
+    base-url: http://localhost:1080
+    connect-timeout: 3000
+    read-timeout: 5000
+
+threads:
+  virtual:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
